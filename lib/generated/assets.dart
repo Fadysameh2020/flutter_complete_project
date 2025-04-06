@@ -2,7 +2,8 @@
 class Assets {
   Assets._();
 
-  static const String iconsAllOrdersIcon = 'assets/icons/all_orders_icon.svg';
-  static const String imagesLogoIcon = 'assets/images/logo_icon.png';
+  static const String iconsBackgroundLogoIcon = 'assets/icons/background_logo_icon.svg';
+  static const String iconsLogoIcon = 'assets/icons/logo_icon.svg';
+  static const String imagesDoctorImage = 'assets/images/doctor_image.png';
 
 }

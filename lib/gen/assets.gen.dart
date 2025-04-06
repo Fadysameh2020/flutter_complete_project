@@ -12,22 +12,25 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/all_orders_icon.svg
-  String get allOrdersIcon => 'assets/icons/all_orders_icon.svg';
+  /// File path: assets/icons/background_logo_icon.svg
+  String get backgroundLogoIcon => 'assets/icons/background_logo_icon.svg';
+
+  /// File path: assets/icons/logo_icon.svg
+  String get logoIcon => 'assets/icons/logo_icon.svg';
 
   /// List of all assets
-  List<String> get values => [allOrdersIcon];
+  List<String> get values => [backgroundLogoIcon, logoIcon];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/logo_icon.png
-  AssetGenImage get logoIcon =>
-      const AssetGenImage('assets/images/logo_icon.png');
+  /// File path: assets/images/doctor_image.png
+  AssetGenImage get doctorImage =>
+      const AssetGenImage('assets/images/doctor_image.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logoIcon];
+  List<AssetGenImage> get values => [doctorImage];
 }
 
 class Assets {
