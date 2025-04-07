@@ -5,5 +5,6 @@ class Assets {
   static const String iconsBackgroundLogoIcon = 'assets/icons/background_logo_icon.svg';
   static const String iconsLogoIcon = 'assets/icons/logo_icon.svg';
   static const String imagesDoctorImage = 'assets/images/doctor_image.png';
+  static const String imagesSplashScreenImage = 'assets/images/splash_screen_image.png';
 
 }
