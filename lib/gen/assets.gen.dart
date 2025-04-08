@@ -29,12 +29,20 @@ class $AssetsImagesGen {
   AssetGenImage get doctorImage =>
       const AssetGenImage('assets/images/doctor_image.png');
 
+  /// File path: assets/images/splash_android_12.png
+  AssetGenImage get splashAndroid12 =>
+      const AssetGenImage('assets/images/splash_android_12.png');
+
   /// File path: assets/images/splash_screen_image.png
   AssetGenImage get splashScreenImage =>
       const AssetGenImage('assets/images/splash_screen_image.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [doctorImage, splashScreenImage];
+  List<AssetGenImage> get values => [
+    doctorImage,
+    splashAndroid12,
+    splashScreenImage,
+  ];
 }
 
 class Assets {
