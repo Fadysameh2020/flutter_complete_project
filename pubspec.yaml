@@ -59,6 +59,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   # Splash screen
   flutter_native_splash: ^2.4.5
+  # A build system for Dart code generation and modular compilation.
+  build_runner: ^2.4.15
 
 dev_dependencies:
   flutter_test:
