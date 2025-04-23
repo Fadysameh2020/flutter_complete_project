@@ -36,6 +36,8 @@ class ColorsManager {
   static const Color borderColor=Color(0xffb3b3b3);
   static const Color grey_CCCCCC_30 = Color(0x4DCCCCCC);
   static const Color grey_8E8E8E = Color(0xFF8E8E8E);
+  static const Color grey_EDEDED = Color(0xFFEDEDED);
+  static const Color grey_FDFDFF = Color(0xFFFDFDFF);
 
   static const Color blue_1E328DE0= Color(0x1E328DE0);
   static const Color blue_403859AD= Color(0x403859AD);
