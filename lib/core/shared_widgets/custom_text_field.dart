@@ -13,6 +13,8 @@ class CustomTextField extends StatelessWidget {
   final bool? isObscureText;
   final Widget? suffixIcon;
   final TextInputType? keyboardType;
+  final TextEditingController? controller;
+  final Function(String?) validator;
 
   const CustomTextField({
     super.key,
@@ -25,11 +27,17 @@ class CustomTextField extends StatelessWidget {
     this.isObscureText,
     this.suffixIcon,
     this.keyboardType,
+    this.controller,
+    required this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
+      validator: (value) {
+        return validator(value);
+      },
       obscureText: isObscureText ?? false,
       keyboardType: keyboardType,
       style: inputTextStyle ?? TextStyles.font16BoldBlack,
@@ -55,7 +63,28 @@ class CustomTextField extends StatelessWidget {
             enabledBorder ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: ColorsManager.grey_EDEDED, width: 1.3),
+              borderSide: BorderSide(
+                color: ColorsManager.grey_EDEDED,
+                width: 1.3,
+              ),
+            ),
+        errorBorder:
+        focusedBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: ColorsManager.red,
+                width: 1.3,
+              ),
+            ),
+        focusedErrorBorder:
+        enabledBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: ColorsManager.red,
+                width: 1.3,
+              ),
             ),
       ),
     );
