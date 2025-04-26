@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_complete_project/features/authentication/data/models/login_request_body.dart';
-import 'package:flutter_complete_project/features/authentication/data/repos/login_repo.dart';
-import 'package:flutter_complete_project/features/authentication/domain/login_state.dart';
+import 'package:flutter_complete_project/features/authentication/login/data/models/login_request_body.dart';
+import 'package:flutter_complete_project/features/authentication/login/data/repos/login_repo.dart';
+import 'package:flutter_complete_project/features/authentication/login/domain/login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepo _loginRepo;

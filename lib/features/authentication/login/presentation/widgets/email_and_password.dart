@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_complete_project/core/helpers/app_regex.dart';
 import 'package:flutter_complete_project/core/helpers/spacing.dart';
 import 'package:flutter_complete_project/core/shared_widgets/custom_text_field.dart';
-import 'package:flutter_complete_project/features/authentication/domain/login_cubit.dart';
-import 'package:flutter_complete_project/features/authentication/presentation/widgets/password_validations.dart';
+import 'package:flutter_complete_project/features/authentication/login/domain/login_cubit.dart';
+import 'package:flutter_complete_project/features/authentication/login/presentation/widgets/password_validations.dart';
 
 class EmailAndPassword extends StatefulWidget {
   const EmailAndPassword({super.key});
