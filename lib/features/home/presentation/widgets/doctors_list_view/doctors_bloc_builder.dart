@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_complete_project/features/home/domain/home_cubit.dart';
+import 'package:flutter_complete_project/features/home/domain/home_state.dart';
+import 'doctors_list_view.dart';
+
+class DoctorsBlocBuilder extends StatelessWidget {
+  const DoctorsBlocBuilder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<HomeCubit, HomeState>(
+      buildWhen: (previous, current) =>
+      current is DoctorsSuccess || current is DoctorsError,
+      builder: (context, state) {
+        return state.maybeWhen(
+          doctorsSuccess: (doctorsList) {
+            return setupSuccess(doctorsList);
+          },
+          doctorsError: (errorHandler) => setupError(errorHandler.apiErrorModel.message),
+          orElse: () {
+            return const SizedBox.shrink();
+          },
+        );
+      },
+    );
+  }
+
+  Widget setupSuccess(doctorsList) {
+    return DoctorsListView(
+      doctorsList: doctorsList,
+    );
+  }
+
+  Widget setupError(String? errorHandler) {
+    return Center(
+      child: Text(errorHandler ?? 'error'),
+    );
+  }
+}

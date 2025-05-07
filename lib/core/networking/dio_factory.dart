@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_complete_project/core/helpers/constants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-import '../helpers/shared_pref_helper.dart';
 
 class DioFactory {
   /// private constructor as I don't want to allow creating an instance of this class
@@ -11,14 +8,14 @@ class DioFactory {
   static Dio? dio;
 
   static Dio getDio() {
-    Duration timeOut = const Duration(seconds: 30);
+    const Duration timeOut = Duration(seconds: 30);
 
     if (dio == null) {
       dio = Dio();
       dio!
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
-      // addDioHeaders();
+      addDioHeaders();
       addDioInterceptor();
       return dio!;
     } else {
@@ -26,19 +23,20 @@ class DioFactory {
     }
   }
 
-  // static void addDioHeaders() async {
-  //   dio?.options.headers = {
-  //     'Accept': 'application/json',
-  //     'Authorization':
-  //     'Bearer ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}',
-  //   };
-  // }
-  //
-  // static void setTokenIntoHeaderAfterLogin(String token) {
-  //   dio?.options.headers = {
-  //     'Authorization': 'Bearer $token',
-  //   };
-  // }
+  static void addDioHeaders() async {
+    const String token =
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3ZjYXJlLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzQ2NjIyMjE5LCJleHAiOjE3NDY3MDg2MTksIm5iZiI6MTc0NjYyMjIxOSwianRpIjoidE5zbW5lb3Zjd2kyRjlEUiIsInN1YiI6IjM2NDgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.dlKr1a0biN6yxqKH3d-e9p3IvrEbr-jA8NpYgnCqzi4';
+    dio?.options.headers = {
+      'Accept': 'application/json',
+      'Authorization':
+          // 'Bearer ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}',
+          'Bearer $token',
+    };
+  }
+
+  static void setTokenIntoHeaderAfterLogin(String token) {
+    dio?.options.headers = {'Authorization': 'Bearer $token'};
+  }
 
   static void addDioInterceptor() {
     dio?.interceptors.add(

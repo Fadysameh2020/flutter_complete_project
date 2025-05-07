@@ -2,19 +2,17 @@ import 'package:flutter_complete_project/core/networking/api_error_handler.dart'
 import 'package:flutter_complete_project/core/networking/api_general_response.dart';
 import 'package:flutter_complete_project/core/networking/api_result.dart';
 import 'package:flutter_complete_project/core/networking/api_service.dart';
-import 'package:flutter_complete_project/features/authentication/login/data/models/login_response.dart';
-import 'package:flutter_complete_project/features/authentication/signup/data/models/sign_up_request_body.dart';
+import 'package:flutter_complete_project/features/home/data/model/specialization_model.dart';
 
-class SignupRepo {
+class HomeRepo {
   final ApiService _apiService;
 
-  SignupRepo(this._apiService);
+  HomeRepo(this._apiService);
 
-  Future<ApiResult<ApiGeneralResponse<UserData>>> signup(
-      SignupRequestBody signupRequestBody,
+  Future<ApiResult<ApiGeneralResponse<List<SpecializationResponse>>>> getSpecialization(
       ) async {
     try {
-      final response = await _apiService.signup(signupRequestBody);
+      final response = await _apiService.getSpecialization();
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.failure(ErrorHandler.handle(e));
