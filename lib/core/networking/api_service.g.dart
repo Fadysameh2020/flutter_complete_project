@@ -20,13 +20,15 @@ class _ApiService implements ApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<LoginResponse> login(LoginRequestBody loginRequestBody) async {
+  Future<ApiGeneralResponse<UserData>> login(
+    LoginRequestBody loginRequestBody,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(loginRequestBody.toJson());
-    final _options = _setStreamType<LoginResponse>(
+    final _options = _setStreamType<ApiGeneralResponse<UserData>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -37,9 +39,12 @@ class _ApiService implements ApiService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late LoginResponse _value;
+    late ApiGeneralResponse<UserData> _value;
     try {
-      _value = LoginResponse.fromJson(_result.data!);
+      _value = ApiGeneralResponse<UserData>.fromJson(
+        _result.data!,
+        (json) => UserData.fromJson(json as Map<String, dynamic>),
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -48,13 +53,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<LoginResponse> signup(SignupRequestBody signupRequestBody) async {
+  Future<ApiGeneralResponse<UserData>> signup(
+    SignupRequestBody signupRequestBody,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(signupRequestBody.toJson());
-    final _options = _setStreamType<LoginResponse>(
+    final _options = _setStreamType<ApiGeneralResponse<UserData>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -65,9 +72,55 @@ class _ApiService implements ApiService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late LoginResponse _value;
+    late ApiGeneralResponse<UserData> _value;
     try {
-      _value = LoginResponse.fromJson(_result.data!);
+      _value = ApiGeneralResponse<UserData>.fromJson(
+        _result.data!,
+        (json) => UserData.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ApiGeneralResponse<List<SpecializationResponse>>>
+  getSpecialization() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options =
+        _setStreamType<ApiGeneralResponse<List<SpecializationResponse>>>(
+          Options(method: 'GET', headers: _headers, extra: _extra)
+              .compose(
+                _dio.options,
+                'https://vcare.integration25.com/api/specialization/index',
+                queryParameters: queryParameters,
+                data: _data,
+              )
+              .copyWith(
+                baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl),
+              ),
+        );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiGeneralResponse<List<SpecializationResponse>> _value;
+    try {
+      _value = ApiGeneralResponse<List<SpecializationResponse>>.fromJson(
+        _result.data!,
+        (json) =>
+            json is List<dynamic>
+                ? json
+                    .map<SpecializationResponse>(
+                      (i) => SpecializationResponse.fromJson(
+                        i as Map<String, dynamic>,
+                      ),
+                    )
+                    .toList()
+                : List.empty(),
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

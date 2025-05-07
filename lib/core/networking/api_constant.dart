@@ -1,7 +1,13 @@
 class APIConstants {
+  /// base_url
   static const String apiBaseUrl = 'https://vcare.integration25.com/api';
+
+  /// auth_APIs
   static const String login = '$apiBaseUrl/auth/login';
   static const String signup = '$apiBaseUrl/auth/register';
+
+  /// home_APIs
+  static const String specialization = '$apiBaseUrl/specialization/index';
 }
 
 class ApiErrors {
